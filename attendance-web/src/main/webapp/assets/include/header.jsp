@@ -4,6 +4,7 @@
 <html lang="en">
   <head>
     <title>Attendance Management</title>
+    <link rel=stylesheet href="/attendance/assets/style/main.css" />
   </head>
   <body>
     <header>
