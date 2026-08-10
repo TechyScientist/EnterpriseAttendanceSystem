@@ -9,7 +9,7 @@
     <version>1.0</version>
     <packaging>pom</packaging>
     <modules>
-        <module>attendance-app</module>
+        <module>attendance-ejb</module>
         <module>attendance-web</module>
         <module>attendance-client</module>
     </modules>
