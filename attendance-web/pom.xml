@@ -10,6 +10,9 @@
     </parent>
 
     <artifactId>attendance-web</artifactId>
+    <packaging>war</packaging>
+    <name>Enterprise Attendance System - Web Component</name>
+    <description>Web app component of the enterprise attendance system - used for management only</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,4 +20,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.spec.javax.ejb</groupId>
+            <artifactId>jboss-ejb-api_3.2_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_4.0_spec</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>attendance-ejb</artifactId>
+            <type>ejb</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
