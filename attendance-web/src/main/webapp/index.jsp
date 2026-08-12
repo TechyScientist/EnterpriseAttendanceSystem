@@ -1,4 +1,4 @@
-<% String pageTitle = "Dashboard", pageCategory = "dashboard"; %>
+<% String pageCategory = "dashboard"; %>
 <%@ include file="assets/include/header.jsp" %>
 
 <%@ include file="assets/include/footer.jsp" %>
