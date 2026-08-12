@@ -1,19 +1,26 @@
 package com.johnnyconsole.attendance.servlet;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.johnnyconsole.attendance.persistence.User;
+import com.johnnyconsole.attendance.persistence.dao.interfaces.UserDao;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Locale;
 
+import static at.favre.lib.crypto.bcrypt.BCrypt.Version.VERSION_2A;
 import static javax.servlet.http.HttpServletResponse.*;
 
 @WebServlet("SignInServlet")
 public class SignInServlet extends HttpServlet {
+
+    @EJB
+    private UserDao userDao;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,8 +30,6 @@ public class SignInServlet extends HttpServlet {
         }
 
         String method = request.getParameter("method");
-        response.setContentType("text/html;charset=utf-8");
-        PrintWriter out = response.getWriter();
 
         if (method.equals("prox")) {
             String proxString = request.getParameter("prox-string"),
@@ -35,12 +40,24 @@ public class SignInServlet extends HttpServlet {
                 response.setStatus(SC_BAD_REQUEST);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
             }
-            // TODO: Retrieve proper user object by prox information and check authentication level
-            out.println("Authentication Method: <strong>Prox Card</strong><br/>");
-            out.println("Received Data => Facility Code: <strong>" + fc + "</strong>, Card Code: <strong>" + cc + "</strong>");
+
+            User user = userDao.findByProxData(fc, cc);
+
+            if(user == null) {
+                response.setStatus(SC_NOT_FOUND);
+                request.getRequestDispatcher("/signin.jsp").forward(request, response);
+
+            }
+            else if(!user.isAdministrator) {
+                response.setStatus(SC_FORBIDDEN);
+                request.getRequestDispatcher("/signin.jsp").forward(request, response);
+            }
+
+            request.getSession().setAttribute("user", user);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
         else if(method.equals("credentials")) {
-            String username = request.getParameter("username"),
+            String username = request.getParameter("username").toLowerCase(Locale.ROOT),
                     password = request.getParameter("password");
 
             if(username.isEmpty() || password.isEmpty()) {
@@ -48,9 +65,24 @@ public class SignInServlet extends HttpServlet {
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
             }
 
-            // TODO: Retrieve proper user object by username/password information and check authentication level
-            out.println("Authentication Method: <strong>Credentials</strong><br/>");
-            out.println("Received Data => Username: <strong>" + username + "</strong>, Password: <strong>" + password + "</strong>");
+            User user = userDao.findByCredentials(username);
+            if(user == null) {
+                response.setStatus(SC_NOT_FOUND);
+                request.getRequestDispatcher("/signin.jsp").forward(request, response);
+            }
+            else if(!BCrypt.verifyer(VERSION_2A)
+                    .verifyStrict(password.toCharArray(), user.password.toCharArray())
+                    .verified) {
+                response.setStatus(SC_CONFLICT);
+                request.getRequestDispatcher("/signin.jsp").forward(request, response);
+            }
+            else if(!user.isAdministrator) {
+                response.setStatus(SC_FORBIDDEN);
+                request.getRequestDispatcher("/signin.jsp").forward(request, response);
+            }
+
+            request.getSession().setAttribute("user", user);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
         else {
             response.setStatus(SC_BAD_REQUEST);
