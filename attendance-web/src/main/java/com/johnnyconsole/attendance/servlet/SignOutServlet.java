@@ -9,13 +9,13 @@ import java.io.IOException;
 
 import static javax.servlet.http.HttpServletResponse.SC_ACCEPTED;
 
-@WebServlet("/SignOutServlet")
+@WebServlet("SignOutServlet")
 public class SignOutServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession() != null) request.getSession().invalidate();
-        request.setAttribute("status", SC_ACCEPTED);
+        response.setStatus(SC_ACCEPTED);
         request.getRequestDispatcher("/signin.jsp").forward(request, response);
 
     }
