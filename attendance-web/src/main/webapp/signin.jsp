@@ -2,12 +2,25 @@
 <%@ include file="assets/include/header.jsp" %>
 
 <% int status = response.getStatus();
-if(status == SC_UNAUTHORIZED) { %>
-    <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Unauthorized Action</strong>: You must be signed in to access this system.</p>
-<% }
-else if(status == SC_BAD_REQUEST) { %>
-    <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
-<% }
+if(status != SC_OK && status != SC_ACCEPTED) {
+    switch(status) {
+        case SC_UNAUTHORIZED: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Unauthorized Action</strong>: You must be signed in to access this system.</p>
+<%          break;
+        case SC_BAD_REQUEST: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
+<%          break;
+        case SC_NOT_FOUND: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: No user profile could be found using the submitted authentication data. Please try again.</p>
+<%          break;
+        case SC_FORBIDDEN: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Forbidden</strong>: You must be a system administrator to access this system.</p>
+<%          break;
+        case SC_CONFLICT: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Your profile could not be authenticated. Please verify your information and try again.</p>
+<%          break;
+    }
+}
 else if(status == SC_ACCEPTED) { %>
     <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: You have been signed out.</p>
 <% } %>
