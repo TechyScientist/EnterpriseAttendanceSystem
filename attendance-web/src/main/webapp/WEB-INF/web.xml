@@ -1,8 +1,8 @@
 <web-app>
-<!--    <servlet>
+   <servlet>
         <servlet-name>SignInServlet</servlet-name>
         <servlet-class>com.johnnyconsole.attendance.servlet.SignInServlet</servlet-class>
-    </servlet> -->
+    </servlet>
     <servlet>
         <servlet-name>SignOutServlet</servlet-name>
         <servlet-class>com.johnnyconsole.attendance.servlet.SignOutServlet</servlet-class>
