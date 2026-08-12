@@ -1,20 +1,21 @@
 package com.johnnyconsole.attendance.persistence;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="attendance_users")
 @NamedQueries({
         @NamedQuery(name="User.FindByProxData", query="SELECT u FROM User u WHERE u.proxFC = :facilityCode AND u.proxCC = :cardCode"),
-        @NamedQuery(name="User.FindByCredentials", query="SELECT u FROM User u WHERE u.username = :Username")
+        @NamedQuery(name="User.FindByCredentials", query="SELECT u FROM User u WHERE u.username = :username")
 })
-public class User {
-    public String lastName, firstName, username, proxFC, proxCC;
-    private String password;
+@IdClass(User.class)
+public class User implements Serializable {
+    @Id public String proxFC, proxCC;
+    public String lastName, firstName, username, password;
     public boolean isAdministrator;
+
+    public User() {}
 
     public User(String lastName, String firstName,
                 String username, String password,
