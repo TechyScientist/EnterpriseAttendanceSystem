@@ -15,6 +15,7 @@ else if(status == SC_ACCEPTED) { %>
 <h2>Management Console Sign In</h2>
 <form action="SignInServlet" method="post">
     <input type="hidden" id="prox-string" name="prox-string"/>
+    <input type="hidden" id="signin-submit" name="signin-submit"/>
     <div class="form-field">
         <label for="method">Authentication Method</label>
         <select id="method" name="method">
@@ -34,7 +35,7 @@ else if(status == SC_ACCEPTED) { %>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" />
         </div>
-        <button type="submit" id="signin-submit">Sign In<img src="/attendance/assets/img/proceed.png" alt="Proceed" /></button>
+        <button type="submit">Sign In<img src="/attendance/assets/img/proceed.png" alt="Proceed" /></button>
     </div>
 </form>
 
