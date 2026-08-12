@@ -1,0 +1,167 @@
+:root {
+    --color-primary: #B3282D;
+    --color-background: #F0D4D5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Nunito", sans-serif;
+}
+
+body {
+    margin: 20px 200px;
+    background: var(--color-background)
+}
+
+main {
+    padding: 5px 30px 30px 30px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+a {
+    width: fit-content;
+    color: black;
+    margin-bottom: 10px;
+}
+
+form {
+    width: fit-content;
+    margin-left: 30px;
+    margin-bottom: 25px;
+}
+
+label {
+    margin-right: 10px;
+}
+
+input:not([type="submit"]), select, textarea {
+    min-width: 300px;
+    padding: 10px;
+    background: var(--color-background);
+    border-radius: 10px;
+    border: 2px solid black;
+    outline: none;
+    box-shadow: none;
+}
+
+input:not([type="submit"]):focus, select:focus, textarea:focus {
+    border-color: var(--color-primary);
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+header {
+    background: var(--color-primary);
+    padding: 20px;
+    color: white;
+    border-radius: 16px;
+}
+
+footer {
+    min-height: 20px;
+    background-color: var(--color-primary);
+    border-radius: 16px;
+}
+
+nav {
+    margin: 10px 30px;
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 5px;
+}
+
+nav a#current, nav a:hover {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+button {
+    display: flex;
+    width: 100%;
+    max-width: 300px;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.form-field {
+    position: relative;
+    margin: 20px 0;
+}
+
+.form-field label {
+    position: absolute;
+    top: -12px;
+    left: 10px;
+    padding: 0 5px;
+    background: var(--color-background);
+}
+
+button img {
+    width: 25px;
+    aspect-ratio: 1/1;
+    margin-left: 10px
+}
+
+p#success {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: darkgreen;
+    color: black;
+    border-radius: 16px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+p#warning {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #E6B848;
+    color: black;
+    border-radius: 16px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+p#error {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: darkred;
+    color: white;
+    border-radius: 16px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+p#success img, p#error img, p#warning img {
+    width: 50px;
+    aspect-ratio: 1/1;
+    margin-right: 10px;
+}
+
+p#error a {
+    color: white;
+}
