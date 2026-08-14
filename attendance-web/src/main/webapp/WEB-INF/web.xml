@@ -7,4 +7,8 @@
         <servlet-name>SignOutServlet</servlet-name>
         <servlet-class>com.johnnyconsole.attendance.servlet.SignOutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddUserServlet</servlet-name>
+        <servlet-class>com.johnnyconsole.attendance.servlet.AddUserServlet</servlet-class>
+    </servlet>
 </web-app>
