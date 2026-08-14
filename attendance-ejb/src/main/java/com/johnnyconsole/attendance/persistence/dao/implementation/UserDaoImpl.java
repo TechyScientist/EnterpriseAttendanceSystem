@@ -5,7 +5,10 @@ import com.johnnyconsole.attendance.persistence.dao.interfaces.UserDao;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+
+import static javax.persistence.CacheRetrieveMode.BYPASS;
 
 @Stateless
 public class UserDaoImpl implements UserDao {
@@ -15,22 +18,35 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByProxData(String facilityCode, String cardCode) {
-        return (User) manager.createNamedQuery("User.FindByProxData")
-                .setParameter("facilityCode", facilityCode)
-                .setParameter("cardCode", cardCode)
-                .getSingleResult();
+        try {
+            return (User) manager.createNamedQuery("User.FindByProxData")
+                    .setParameter("facilityCode", facilityCode)
+                    .setParameter("cardCode", cardCode)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public User findByCredentials(String username) {
-        return (User) manager.createNamedQuery("User.FindByCredentials")
-                .setParameter("username", username)
-                .getSingleResult();
+        try {
+            return (User) manager.createNamedQuery("User.FindByCredentials")
+                    .setParameter("username", username)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     @Override
     public boolean create(User user) {
-        return false;
+        try {
+            manager.persist(user);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
