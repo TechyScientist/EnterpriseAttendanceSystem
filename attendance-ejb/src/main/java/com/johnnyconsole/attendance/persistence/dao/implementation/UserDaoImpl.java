@@ -8,7 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-import static javax.persistence.CacheRetrieveMode.BYPASS;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 @Stateless
 public class UserDaoImpl implements UserDao {
@@ -36,6 +38,19 @@ public class UserDaoImpl implements UserDao {
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;
+        }
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<User> findByNameData(String firstName, String lastName) {
+        try {
+           return (List<User>) manager.createNamedQuery("User.FindByNameData")
+                   .setParameter("firstName", "%" + firstName.toLowerCase(Locale.ROOT) + "%")
+                   .setParameter("lastName", "%" + lastName.toLowerCase(Locale.ROOT) + "%")
+                   .getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
         }
     }
 
