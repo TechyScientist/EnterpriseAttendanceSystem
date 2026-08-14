@@ -1,15 +1,33 @@
 <% String pageCategory = "management"; %>
 <%@ include file="assets/include/header.jsp" %>
 
+<% int status = response.getStatus();
+if(status != SC_OK && status != SC_CREATED) {
+    switch(status) {
+        case SC_BAD_REQUEST: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
+<%          break;
+        case SC_CONFLICT: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: A user with the provided authentication data already exists. Please check the data and try again.</p>
+<%          break;
+        case SC_INTERNAL_SERVER_ERROR: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
+<%          break;
+    }
+}
+else if(status == SC_CREATED) { %>
+    <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Add User request completed.</p>
+<% } %>
+
 <h2>User Management - Add a User</h2>
-<form action="" method="post">
+<form action="AddUserServlet" method="post">
     <div class="form-field">
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" required/>
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" name="first-name" required/>
     </div>
     <div class="form-field">
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName" required/>
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" name="last-name" required/>
     </div>
     <div class="form-field">
         <label for="prox">Prox Information</label>
