@@ -123,6 +123,16 @@ button img {
     margin-left: 10px
 }
 
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+}
+
 p#success {
     display: flex;
     align-items: center;
