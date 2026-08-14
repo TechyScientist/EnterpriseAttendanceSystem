@@ -12,6 +12,10 @@
         <servlet-class>com.johnnyconsole.attendance.servlet.AddUserServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RemoveUserServlet</servlet-name>
+        <servlet-class>com.johnnyconsole.attendance.servlet.RemoveUserServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>UserSearchServlet</servlet-name>
         <servlet-class>com.johnnyconsole.attendance.servlet.UserSearchServlet</servlet-class>
     </servlet>
