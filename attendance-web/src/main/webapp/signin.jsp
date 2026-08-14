@@ -1,6 +1,10 @@
 <% String pageCategory = "signin"; %>
 <%@ include file="assets/include/header.jsp" %>
 
+<script>
+    window.history.replaceState(null, "", "${pageContext.request.contextPath}/signin.jsp");
+</script>
+
 <% int status = response.getStatus();
 if(status != SC_OK && status != SC_ACCEPTED) {
     switch(status) {
