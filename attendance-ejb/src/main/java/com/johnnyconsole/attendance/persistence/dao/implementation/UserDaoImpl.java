@@ -71,6 +71,11 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean delete(User user) {
-        return false;
+        try {
+            manager.remove(manager.contains(user) ? user : manager.merge(user));
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
     }
 }
