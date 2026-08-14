@@ -27,6 +27,7 @@ public class SignInServlet extends HttpServlet {
         if(request.getParameter("signin-submit") == null) {
             response.setStatus(SC_BAD_REQUEST);
             request.getRequestDispatcher("/signin.jsp").forward(request, response);
+            return;
         }
 
         String method = request.getParameter("method");
@@ -39,6 +40,7 @@ public class SignInServlet extends HttpServlet {
             if(fc.isEmpty() || cc.isEmpty()) {
                 response.setStatus(SC_BAD_REQUEST);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
+                return;
             }
 
             User user = userDao.findByProxData(fc, cc);
@@ -46,11 +48,13 @@ public class SignInServlet extends HttpServlet {
             if(user == null) {
                 response.setStatus(SC_NOT_FOUND);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
+                return;
 
             }
             else if(!user.isAdministrator) {
                 response.setStatus(SC_FORBIDDEN);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
+                return;
             }
 
             request.getSession().setAttribute("user", user);
@@ -63,22 +67,26 @@ public class SignInServlet extends HttpServlet {
             if(username.isEmpty() || password.isEmpty()) {
                 response.setStatus(SC_BAD_REQUEST);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
+                return;
             }
 
             User user = userDao.findByCredentials(username);
             if(user == null) {
                 response.setStatus(SC_NOT_FOUND);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
+                return;
             }
             else if(!BCrypt.verifyer(VERSION_2A)
                     .verifyStrict(password.toCharArray(), user.password.toCharArray())
                     .verified) {
                 response.setStatus(SC_CONFLICT);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
+                return;
             }
             else if(!user.isAdministrator) {
                 response.setStatus(SC_FORBIDDEN);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
+                return;
             }
 
             request.getSession().setAttribute("user", user);

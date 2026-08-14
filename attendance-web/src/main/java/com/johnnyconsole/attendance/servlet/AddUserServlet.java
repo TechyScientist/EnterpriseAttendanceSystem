@@ -27,6 +27,7 @@ public class AddUserServlet extends HttpServlet {
         if(request.getParameter("add-user-submit") == null) {
             response.setStatus(SC_BAD_REQUEST);
             request.getRequestDispatcher("/add-user.jsp").forward(request, response);
+            return;
         }
         String firstName = request.getParameter("first-name"),
                 lastName = request.getParameter("last-name"),
@@ -41,6 +42,7 @@ public class AddUserServlet extends HttpServlet {
         if(fc.isEmpty() || cc.isEmpty()) {
             response.setStatus(SC_BAD_REQUEST);
             request.getRequestDispatcher("/add-user.jsp").forward(request, response);
+            return;
         }
         System.out.println(userDao.findByProxData(fc,cc));
 
@@ -48,6 +50,7 @@ public class AddUserServlet extends HttpServlet {
                 (!username.isEmpty() && userDao.findByCredentials(username) != null)) {
             response.setStatus(SC_CONFLICT);
             request.getRequestDispatcher("/add-user.jsp").forward(request, response);
+            return;
         }
 
         User user;
