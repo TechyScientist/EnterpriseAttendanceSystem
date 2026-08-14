@@ -1,5 +1,7 @@
 package com.johnnyconsole.attendance.persistence;
 
+import com.johnnyconsole.attendance.persistence.id.UserId;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,9 +11,10 @@ import java.io.Serializable;
         @NamedQuery(name="User.FindByProxData", query="SELECT u FROM User u WHERE u.proxFC = :facilityCode AND u.proxCC = :cardCode"),
         @NamedQuery(name="User.FindByCredentials", query="SELECT u FROM User u WHERE u.username = :username")
 })
-@IdClass(User.class)
+@IdClass(UserId.class)
 public class User implements Serializable {
-    @Id public String proxFC, proxCC;
+    @Id public String proxFC;
+    @Id public String proxCC;
     public String lastName, firstName, username, password;
     public boolean isAdministrator;
 
