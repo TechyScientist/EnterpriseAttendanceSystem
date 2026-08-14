@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
+import static javax.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
 
 @WebServlet("UserSearchServlet")
 public class UserSearchServlet extends HttpServlet {
@@ -33,6 +34,12 @@ public class UserSearchServlet extends HttpServlet {
         request.setAttribute("user-list", userDao.findByNameData(firstName, lastName));
         request.getRequestDispatcher("/" + referrer).forward(request, response);
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setStatus(SC_METHOD_NOT_ALLOWED);
+        request.getRequestDispatcher("/signin.jsp").forward(request, response);
     }
 
 }
