@@ -8,5 +8,6 @@
     <% } else if(!pageCategory.equals("signin")){
         response.setStatus(SC_UNAUTHORIZED);
         request.getRequestDispatcher("/signin.jsp").forward(request, response);
+        return;
       } %>
 </nav>
