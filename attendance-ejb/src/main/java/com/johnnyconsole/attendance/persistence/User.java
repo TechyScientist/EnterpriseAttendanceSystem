@@ -9,7 +9,8 @@ import java.io.Serializable;
 @Table(name="attendance_users")
 @NamedQueries({
         @NamedQuery(name="User.FindByProxData", query="SELECT u FROM User u WHERE u.proxFC = :facilityCode AND u.proxCC = :cardCode"),
-        @NamedQuery(name="User.FindByCredentials", query="SELECT u FROM User u WHERE u.username = :username")
+        @NamedQuery(name="User.FindByCredentials", query="SELECT u FROM User u WHERE u.username = :username"),
+        @NamedQuery(name="User.FindByNameData", query="SELECT u FROM User u WHERE LOWER(u.firstName) LIKE :firstName OR LOWER(u.lastName) LIKE :lastName")
 })
 @IdClass(UserId.class)
 public class User implements Serializable {
