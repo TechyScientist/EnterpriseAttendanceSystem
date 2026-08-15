@@ -17,13 +17,14 @@ public class User implements Serializable {
     @Id public String proxFC;
     @Id public String proxCC;
     public String lastName, firstName, username, password;
-    public boolean isAdministrator;
+    public boolean isInstructor, isAdministrator;
 
     public User() {}
 
     public User(String lastName, String firstName,
                 String username, String password,
                 String proxFC, String proxCC,
+                boolean isInstructor,
                 boolean isAdministrator) {
         this.lastName = lastName;
         this.firstName = firstName;
@@ -31,6 +32,7 @@ public class User implements Serializable {
         this.password = password;
         this.proxFC = proxFC;
         this.proxCC = proxCC;
+        this.isInstructor = isInstructor;
         this.isAdministrator = isAdministrator;
     }
 }
