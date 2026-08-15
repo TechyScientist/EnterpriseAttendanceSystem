@@ -34,27 +34,29 @@ else if(status == SC_CREATED) { %>
         <input type="text" id="prox" name="prox" required/>
     </div>
     <div class="form-field">
-        <label for="is-administrator">Access Level</label>
-        <select id="is-administrator" name="is-administrator">
-            <option value="false">Student</option>
-            <option value="true">Administrator</option>
+        <label for="access-level">System Access Level</label>
+        <select id="access-level" name="access-level">
+            <option value="false false">Student</option>
+            <option value="true false">Instructor</option>
+            <option value="false true">Administrator</option>
+            <option value="true true">Instructor/Administrator</option>
         </select>
-        <div id="credentials-div" style="display: none">
-            <div class="form-field">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username"/>
-            </div>
-            <div class="form-field">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password"/>
-            </div>
+    </div>
+    <div id="credentials-div" style="display: none">
+        <div class="form-field">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username"/>
+        </div>
+        <div class="form-field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password"/>
         </div>
     </div>
     <button type="submit" id="add-user-submit" name="add-user-submit">Submit Request <img src="assets/img/proceed.png" alt="Proceed"/></button>
 </form>
 
 <script>
-    const isAdministrator = document.getElementById("is-administrator");
+    const accessLevel = document.getElementById("access-level");
     const credentialsDiv = document.getElementById("credentials-div");
     const usernameField = document.getElementById("username");
     const passwordField = document.getElementById("password");
@@ -65,8 +67,10 @@ else if(status == SC_CREATED) { %>
         }
     })
 
-    isAdministrator.addEventListener("change", event => {
-        if(event.target.value === "true") {
+    accessLevel.addEventListener("change", event => {
+        const instructor  = event.target.value.split(" ")[0]
+        const admin = event.target.value.split(" ")[1]
+        if(instructor === "true" || admin === "true") {
             credentialsDiv.style.display = "block";
             usernameField.required = true;
             passwordField.required = true;
@@ -77,7 +81,7 @@ else if(status == SC_CREATED) { %>
         }
     });
 
-    isAdministrator.dispatchEvent(new Event('change'));
+    accessLevel.dispatchEvent(new Event('change'));
 </script>
 
 <%@ include file="assets/include/footer.jsp" %>

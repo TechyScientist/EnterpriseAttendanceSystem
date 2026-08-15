@@ -36,15 +36,16 @@ public class AddUserServlet extends HttpServlet {
                 cc = !prox.contains(":") ? "" : prox.substring(prox.indexOf(":") + 1),
                 username = request.getParameter("username"),
                 password = BCrypt.with(VERSION_2A).hashToString(12,
-                        request.getParameter("password").toCharArray());
-        boolean isAdministrator = Boolean.parseBoolean(request.getParameter("is-administrator"));
+                        request.getParameter("password").toCharArray()),
+                access = request.getParameter("access-level");
+        boolean isInstructor = Boolean.parseBoolean(access.split(" ")[0]),
+                isAdministrator = Boolean.parseBoolean(access.split(" ")[1]);
 
         if(fc.isEmpty() || cc.isEmpty()) {
             response.setStatus(SC_BAD_REQUEST);
             request.getRequestDispatcher("/add-user.jsp").forward(request, response);
             return;
         }
-        System.out.println(userDao.findByProxData(fc,cc));
 
         if(userDao.findByProxData(fc, cc) != null ||
                 (!username.isEmpty() && userDao.findByCredentials(username) != null)) {
@@ -54,13 +55,13 @@ public class AddUserServlet extends HttpServlet {
         }
 
         User user;
-        if(isAdministrator) {
+        if(isAdministrator || isInstructor) {
             user = new User(lastName, firstName, username.toLowerCase(Locale.ROOT),
-                    password, fc, cc, true);
+                    password, fc, cc, isInstructor, isAdministrator);
         }
         else {
             user = new User(lastName, firstName, null,
-                    null, fc, cc, false);
+                    null, fc, cc, false, false);
         }
 
         if(userDao.create(user)) {
