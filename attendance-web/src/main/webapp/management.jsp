@@ -25,6 +25,7 @@
     <div>
         <h3>User Management</h3>
         <a href="add-user.jsp" class="image-button"><span>Add User</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
+        <a href="" class="image-button"><span>Reassign User Prox Data</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
         <a href="" class="image-button"><span>Edit User</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
         <a href="remove-user.jsp" class="image-button"><span>Remove User</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
     </div>
