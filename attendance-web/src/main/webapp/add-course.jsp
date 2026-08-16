@@ -23,7 +23,7 @@ else if(status == SC_CREATED) { %>
 %>
 
 <h2>Course Management - Add a Course</h2>
-<form action="" method="post">
+<form action="AddCourseServlet" method="post">
     <div class="form-field">
         <label for="term">Term Code</label>
         <input type="text" id="term" name="term" required/>
