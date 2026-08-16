@@ -79,7 +79,12 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public boolean create(Course course) {
-        return false;
+        try {
+            manager.persist(course);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
