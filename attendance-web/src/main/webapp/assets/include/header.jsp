@@ -1,7 +1,11 @@
 <%@ page import="static javax.servlet.http.HttpServletResponse.*" %>
 <%@ page import="com.johnnyconsole.attendance.persistence.User" %>
+<%@ page import="com.johnnyconsole.attendance.persistence.dao.interfaces.UserDao" %>
+<%@ page import="com.johnnyconsole.attendance.persistence.dao.interfaces.CourseDao" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
-<% User user = (User) session.getAttribute("user"); %>
+<% User user = (User) session.getAttribute("user");
+   UserDao userDao = (UserDao) session.getAttribute("UserDao");
+   CourseDao courseDao = (CourseDao) session.getAttribute("CourseDao"); %>
 <html lang="en">
   <head>
     <title>Attendance Management</title>
