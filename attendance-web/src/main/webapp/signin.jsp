@@ -18,7 +18,7 @@ if(status != SC_OK && status != SC_ACCEPTED) {
             <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: No user profile could be found using the submitted authentication data. Please try again.</p>
 <%          break;
         case SC_FORBIDDEN: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Forbidden</strong>: You must be a system administrator to access this system.</p>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Forbidden</strong>: You must be a registered instructor or a system administrator to access this system.</p>
 <%          break;
         case SC_CONFLICT: %>
             <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Your profile could not be authenticated. Please verify your information and try again.</p>
