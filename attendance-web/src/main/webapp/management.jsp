@@ -31,7 +31,7 @@
     </div>
     <div>
         <h3>Course Management</h3>
-        <a href="" class="image-button"><span>Add Course Section</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
+        <a href="add-course.jsp" class="image-button"><span>Add Course Section</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
         <a href="" class="image-button"><span>Edit Course Section</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
         <a href="" class="image-button"><span>Remove Course Section</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
     </div>
