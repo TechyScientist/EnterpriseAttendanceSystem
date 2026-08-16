@@ -7,8 +7,6 @@
 <% String pageCategory = "dashboard"; %>
 <%@ include file="assets/include/header.jsp" %>
 
-<!-- TODO Fix date/time display, correct date filters -->
-
 <script>
     window.history.replaceState(null, "", "${pageContext.request.contextPath}/");
 </script>
@@ -20,9 +18,11 @@
 <% if(user.isInstructor) {
         List<Course> courses = courseDao.findByInstructor(user.username);
         if(!courses.isEmpty()) {
-            List<Course> past = courses.stream().filter(course -> course.end.before(Timestamp.from(Instant.now()))).collect(Collectors.toList()),
-                    current = courses.stream().filter(course -> course.end.after(Timestamp.from(Instant.now()))).collect(Collectors.toList()),
-                    future = courses.stream().filter(course -> course.start.before(Timestamp.from(Instant.now()))).collect(Collectors.toList());
+            Timestamp now = Timestamp.from(Instant.now());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");
+            List<Course> past = courses.stream().filter(course -> course.end.before(now)).collect(Collectors.toList()),
+                    current = courses.stream().filter(course -> course.start.before(now) && course.end.after(now)).collect(Collectors.toList()),
+                    future = courses.stream().filter(course -> course.start.after(now)).collect(Collectors.toList());
             if(!current.isEmpty()) { %>
                 <h2>My Current Courses</h2>
                 <table>
@@ -36,11 +36,11 @@
                             <tr>
                                 <td><%= course.term %> <%= course.subject %>-<%= course.number %>-<%= course.section %></td>
                                 <td><%= course.name %></td>
-                                <td>Start: <strong><%= course.start.toLocalDateTime().format(DateTimeFormatter.ofPattern("")) %></strong><br/>End: Start: <strong><%= course.end.toLocalDateTime().format(DateTimeFormatter.ofPattern("")) %></strong></td>
+                                <td>Start: <strong><%= course.start.toLocalDateTime().format(formatter) %></strong><br/>End: <strong><%= course.end.toLocalDateTime().format(formatter) %></strong></td>
                                 <td><form action="" method="post" style="margin: 0;"><button type="submit">Roster <img src="assets/img/proceed.png" alt="Proceed"/></button></form></td>
                             </tr>
 <%                  } %>
-                </table>
+                </table><br/>
 <%          }
 
             if(!future.isEmpty()) { %>
@@ -52,15 +52,15 @@
                         <th>Course Start/End Dates</th>
                         <th>Roster</th>
                     </tr>
-                    <% for(Course course : current) { %>
+                    <% for(Course course : future) { %>
                         <tr>
                             <td><%= course.term %> <%= course.subject %>-<%= course.number %>-<%= course.section %></td>
                             <td><%= course.name %></td>
-                            <td>Start: <strong><%= course.start.toLocalDateTime().format(DateTimeFormatter.ofPattern("")) %></strong><br/>End: Start: <strong><%= course.end.toLocalDateTime().format(DateTimeFormatter.ofPattern("")) %></strong></td>
+                            <td>Start: <strong><%= course.start.toLocalDateTime().format(formatter) %></strong><br/>End: <strong><%= course.end.toLocalDateTime().format(formatter) %></strong></td>
                             <td><form action="" method="post" style="margin: 0;"><button type="submit">Roster <img src="assets/img/proceed.png" alt="Proceed"/></button></form></td>
                         </tr>
 <%                  } %>
-                </table>
+                </table><br/>
 <%          }
 
             if(!past.isEmpty()) { %>
@@ -71,14 +71,14 @@
                         <th>Course Name</th>
                         <th>Course Start/End Dates</th>
                     </tr>
-                    <% for(Course course : current) { %>
+                    <% for(Course course : past) { %>
                             <tr>
                                 <td><%= course.term %> <%= course.subject %>-<%= course.number %>-<%= course.section %></td>
                                 <td><%= course.name %></td>
-                                <td>Start: <strong><%= course.start.toLocalDateTime().format(DateTimeFormatter.ofPattern("")) %></strong><br/>End: Start: <strong><%= course.end.toLocalDateTime().format(DateTimeFormatter.ofPattern("")) %></strong></td>
+                                <td>Start: <strong><%= course.start.toLocalDateTime().format(formatter) %></strong><br/>End: <strong><%= course.end.toLocalDateTime().format(formatter) %></strong></td>
                             </tr>
 <%                  } %>
-                </table>
+                </table><br/>
 <%          }
         }
     } %>
