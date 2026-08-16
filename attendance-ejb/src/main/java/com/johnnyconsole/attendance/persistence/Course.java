@@ -16,10 +16,14 @@ import java.io.Serializable;
 })
 @IdClass(CourseId.class)
 public class Course implements Serializable {
-    @Id String term;
-    @Id String subject;
-    @Id String number;
-    @Id String section;
+    @Id
+    public String term;
+    @Id
+    public String subject;
+    @Id
+    public String number;
+    @Id
+    public String section;
     public String name, instructor;
 
     public Course() {}
