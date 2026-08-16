@@ -22,10 +22,10 @@ public class CourseDaoImpl implements CourseDao {
     public Course lookup(String term, String subject, String number, String section) {
         try {
             return (Course) manager.createNamedQuery("Course.Lookup")
-                    .setParameter("term", term.toLowerCase(Locale.ROOT))
-                    .setParameter("subject", subject.toLowerCase(Locale.ROOT))
+                    .setParameter("term", term.toUpperCase(Locale.ROOT))
+                    .setParameter("subject", subject.toUpperCase(Locale.ROOT))
                     .setParameter("number", number)
-                    .setParameter("section", section.toLowerCase(Locale.ROOT))
+                    .setParameter("section", section.toUpperCase(Locale.ROOT))
                     .getSingleResult();
         } catch (NoResultException ex) {
             return null;
@@ -36,7 +36,7 @@ public class CourseDaoImpl implements CourseDao {
     public List<Course> findByTerm(String term) {
         try {
             return (List<Course>) manager.createNamedQuery("Course.FindByTerm")
-                    .setParameter("term", term.toLowerCase(Locale.ROOT))
+                    .setParameter("term", term.toUpperCase(Locale.ROOT))
                     .getResultList();
         } catch (NoResultException ex) {
             return Collections.emptyList();
@@ -47,7 +47,7 @@ public class CourseDaoImpl implements CourseDao {
     public List<Course> findSectionsByCourseNumber(String subject, String number) {
         try {
             return (List<Course>) manager.createNamedQuery("Course.FindSectionsByCourseNumber")
-                    .setParameter("subject", subject.toLowerCase(Locale.ROOT))
+                    .setParameter("subject", subject.toUpperCase(Locale.ROOT))
                     .setParameter("number", number)
                     .getResultList();
         } catch (NoResultException ex) {
