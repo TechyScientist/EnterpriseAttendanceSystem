@@ -19,4 +19,8 @@
         <servlet-name>UserSearchServlet</servlet-name>
         <servlet-class>com.johnnyconsole.attendance.servlet.UserSearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCourseServlet</servlet-name>
+        <servlet-class>com.johnnyconsole.attendance.servlet.AddCourseServlet</servlet-class>
+    </servlet>
 </web-app>
