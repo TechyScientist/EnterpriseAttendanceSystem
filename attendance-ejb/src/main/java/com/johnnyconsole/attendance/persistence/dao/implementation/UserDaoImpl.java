@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+@SuppressWarnings("unchecked")
 @Stateless
 public class UserDaoImpl implements UserDao {
 
@@ -42,13 +43,22 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> findByNameData(String firstName, String lastName) {
         try {
            return (List<User>) manager.createNamedQuery("User.FindByNameData")
                    .setParameter("firstName", "%" + firstName.toLowerCase(Locale.ROOT) + "%")
                    .setParameter("lastName", "%" + lastName.toLowerCase(Locale.ROOT) + "%")
                    .getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public List<User> findInstructors() {
+        try {
+            return (List<User>) manager.createNamedQuery("User.FindInstructors")
+                    .getResultList();
         } catch (NoResultException e) {
             return Collections.emptyList();
         }
