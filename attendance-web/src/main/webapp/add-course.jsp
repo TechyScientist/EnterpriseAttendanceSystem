@@ -9,7 +9,7 @@ if(status != SC_OK && status != SC_CREATED) {
             <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
 <%          break;
         case SC_CONFLICT: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: A course with the provided data already exists. Please check the data and try again.</p>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Validation Error</strong>: A course with the provided data already exists. Please check the data and try again.</p>
 <%          break;
         case SC_INTERNAL_SERVER_ERROR: %>
             <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
