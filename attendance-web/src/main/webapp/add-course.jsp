@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <% String pageCategory = "management"; %>
 <%@ include file="assets/include/header.jsp" %>
 
@@ -17,7 +18,9 @@ if(status != SC_OK && status != SC_CREATED) {
 }
 else if(status == SC_CREATED) { %>
     <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Add Course request completed.</p>
-<% } %>
+<% }
+    List<User> instructors = userDao.findInstructors();
+%>
 
 <h2>Course Management - Add a Course</h2>
 <form action="" method="post">
@@ -45,6 +48,9 @@ else if(status == SC_CREATED) { %>
         <label for="instructor">Instructor</label>
         <select id="instructor" name="instructor">
             <option value="">Unassigned</option>
+            <% for(User instructor : instructors) { %>
+                <option value="<%= instructor.username %>"><%= instructor.lastName%>, <%= instructor.firstName%> (<%= instructor.username%>)</option>
+            <% } %>
         </select>
     </div>
     <button type="submit" id="add-course-submit" name="add-course-submit">Submit Request <img src="assets/img/proceed.png" alt="Proceed"/></button>
