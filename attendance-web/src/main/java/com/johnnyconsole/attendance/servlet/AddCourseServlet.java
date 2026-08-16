@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Locale;
 
 import static at.favre.lib.crypto.bcrypt.BCrypt.Version.VERSION_2A;
@@ -38,6 +40,8 @@ public class AddCourseServlet extends HttpServlet {
                 name = request.getParameter("name"),
                 instructor = request.getParameter("instructor").isEmpty() ?
                         null : request.getParameter("instructor");
+        Timestamp start = Timestamp.valueOf(LocalDateTime.parse(request.getParameter("start"))),
+                end = Timestamp.valueOf(LocalDateTime.parse(request.getParameter("end")));
 
         Course course = courseDao.lookup(term, subject, number, section);
 
@@ -47,7 +51,7 @@ public class AddCourseServlet extends HttpServlet {
             return;
         }
 
-        response.setStatus(courseDao.create(new Course(term, subject, number, section, name, instructor))
+        response.setStatus(courseDao.create(new Course(term, subject, number, section, name, instructor, start, end))
                 ? SC_CREATED : SC_INTERNAL_SERVER_ERROR);
         request.getRequestDispatcher("/add-course.jsp").forward(request, response);
 

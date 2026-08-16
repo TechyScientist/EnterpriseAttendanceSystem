@@ -4,6 +4,7 @@ import com.johnnyconsole.attendance.persistence.id.CourseId;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="attendance_courses")
@@ -25,15 +26,18 @@ public class Course implements Serializable {
     @Id
     public String section;
     public String name, instructor;
+    public Timestamp start, end;
 
     public Course() {}
 
-    public Course(String term, String subject, String number, String section, String name, String instructor) {
+    public Course(String term, String subject, String number, String section, String name, String instructor, Timestamp start, Timestamp end) {
         this.term = term;
         this.subject = subject;
         this.number = number;
         this.section = section;
         this.name = name;
         this.instructor = instructor;
+        this.start = start;
+        this.end = end;
     }
 }

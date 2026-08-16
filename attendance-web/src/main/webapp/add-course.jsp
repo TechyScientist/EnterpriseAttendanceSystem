@@ -45,6 +45,14 @@ else if(status == SC_CREATED) { %>
         <input type="text" id="name" name="name" required/>
     </div>
     <div class="form-field">
+        <label for="start">Start Date</label>
+        <input type="datetime-local" id="start" name="start" required/>
+    </div>
+    <div class="form-field">
+        <label for="end">End Date</label>
+        <input type="datetime-local" id="end" name="end" required/>
+    </div>
+    <div class="form-field">
         <label for="instructor">Instructor</label>
         <select id="instructor" name="instructor">
             <option value="">Unassigned</option>
