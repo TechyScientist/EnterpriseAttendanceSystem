@@ -1,0 +1,71 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.johnnyconsole.attendance.persistence.Course" %>
+<% String pageCategory = "management"; %>
+<%@ include file="assets/include/header.jsp" %>
+
+<% int status = response.getStatus();
+if(status != SC_OK && status != SC_ACCEPTED) {
+    switch(status) {
+        case SC_BAD_REQUEST: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
+<%          break;
+        case SC_NOT_FOUND: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: No course sections could be found using the submitted data. Please try again.</p>
+<%          break;
+        case SC_INTERNAL_SERVER_ERROR: %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
+<%          break;
+    }
+}
+else if(status == SC_ACCEPTED) { %>
+        <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Remove Course request completed.</p>
+<% }
+
+    @SuppressWarnings("unchecked")
+    List<Course> courses = (List<Course>) request.getAttribute("course-list");
+
+if(courses == null || courses.isEmpty()) {
+    if(courses != null) { %>
+        <p id="error"><img src="/attendance/assets/img/error.png" alt="error"/><strong>Search Error</strong>: No course sections found matching the entered criteria. Please try again.</p>
+<%  } %>
+
+    <h2>Course Search</h2>
+    <div style="display: grid; grid-template-columns: auto auto; column-gap: 20px; max-width: fit-content;">
+        <div>
+            <h3>Search by Section Information</h3>
+            <form action="" method="post">
+                <input type="hidden" id="referrer" name="referrer" value="remove-course.jsp" />
+                <div class="form-field">
+                    <label for="term">Term Code</label>
+                    <input type="text" id="term" name="term" required/>
+                </div>
+                <div class="form-field">
+                    <label for="subject">Subject Code</label>
+                    <input type="text" id="subject" name="subject" required/>
+                </div>
+                <div class="form-field">
+                    <label for="number">Course Number</label>
+                    <input type="text" id="number" name="number" required/>
+                </div>
+                <div class="form-field">
+                    <label for="section">Section Code</label>
+                    <input type="text" id="section" name="section" required/>
+                </div>
+                <button type="submit" id="course-search-submit" name="course-search-submit">Execute Search <img src="assets/img/proceed.png" alt="Proceed"/></button>
+            </form>
+        </div>
+        <div>
+            <h3>Search By Course Title</h3>
+            <form action="" method="post">
+                <input type="hidden" id="referrer" name="referrer" value="remove-course.jsp" />
+                <div class="form-field">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required/>
+                </div>
+                <button type="submit" id="course-search-submit" name="course-search-submit">Execute Search <img src="assets/img/proceed.png" alt="Proceed"/></button>
+            </form>
+        </div>
+    </div>
+<% } %>
+
+<%@ include file="assets/include/footer.jsp" %>
