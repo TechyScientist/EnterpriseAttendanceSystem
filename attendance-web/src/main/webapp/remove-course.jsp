@@ -87,7 +87,7 @@ else {
                 <td><%= instructor.lastName %>, <%= instructor.firstName %></strong></td>
                 <td>Start: <strong><%= c.start.toLocalDateTime().format(formatter) %></strong><br/>End: <strong><%= c.end.toLocalDateTime().format(formatter) %></strong></td>
                 <td>
-                    <form action="" method="post" style="margin: 0;">
+                    <form action="RemoveCourseServlet" method="post" style="margin: 0;">
                         <input type="hidden" id="term" name="term" value="<%= c.term %>"/>
                         <input type="hidden" id="subject" name="subject" value="<%= c.subject %>"/>
                         <input type="hidden" id="number" name="number" value="<%= c.number %>"/>
