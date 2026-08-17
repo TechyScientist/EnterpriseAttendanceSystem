@@ -66,6 +66,38 @@ if(courses == null || courses.isEmpty()) {
             </form>
         </div>
     </div>
+<% }
+else { %>
+    <h2>Search Results</h2>
+    <table>
+        <tr>
+            <th>Course Identifier</th>
+            <th>Course Title</th>
+            <th>Course Instructor</th>
+            <th>Course Start/End Dates</th>
+            <th>Submit Remove Request</th>
+        </tr>
+<%      for(Course c : courses) {
+            User instructor = userDao.findByCredentials(c.instructor); %>
+            <tr>
+                <td><%= c.term %> <%= c.subject %>-<%= c.number %>-<%= c.section %></td>
+                <td><%= c.name %></td>
+                <td><%= instructor.lastName %>, <%= instructor.firstName %></strong></td>
+                <td>
+                    <form action="RemoveUserServlet" method="post" style="margin: 0;">
+                        <input type="hidden" id="term" name="term" value="<%= c.term %>"/>
+                        <input type="hidden" id="subject" name="subject" value="<%= c.subject %>"/>
+                        <input type="hidden" id="number" name="number" value="<%= c.number %>"/>
+                        <input type="hidden" id="section" name="section" value="<%= c.section %>"/>
+                        <button type="submit" id="remove-course-submit" name="remove-course-submit">Submit Remove Request <img src="/attendance/assets/img/proceed.png" alt="Proceed"/></button>
+                    </form>
+                </td>
+            </tr>
+<%      } %>
+    </table>
+    <form action="remove-course.jsp" method="get" style="margin: 10px 0 0 0;">
+        <button type="submit"><img src="/attendance/assets/img/back.png" alt="back" style="margin-left: 0; margin-right: 10px;"/> New Search</button>
+    </form>
 <% } %>
 
 <%@ include file="assets/include/footer.jsp" %>
