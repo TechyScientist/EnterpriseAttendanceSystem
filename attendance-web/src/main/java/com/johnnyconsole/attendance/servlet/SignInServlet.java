@@ -35,6 +35,7 @@ public class SignInServlet extends HttpServlet {
             return;
         }
 
+        HttpSession session = request.getSession();
         String method = request.getParameter("method");
 
         if (method.equals("prox")) {
@@ -62,7 +63,6 @@ public class SignInServlet extends HttpServlet {
                 return;
             }
 
-            HttpSession session = request.getSession();
             session.setAttribute("user", user);
             session.setAttribute("UserDao", userDao);
             session.setAttribute("CourseDao", courseDao);
@@ -97,7 +97,9 @@ public class SignInServlet extends HttpServlet {
                 return;
             }
 
-            request.getSession().setAttribute("user", user);
+            session.setAttribute("user", user);
+            session.setAttribute("UserDao", userDao);
+            session.setAttribute("CourseDao", courseDao);
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         }
         else {
