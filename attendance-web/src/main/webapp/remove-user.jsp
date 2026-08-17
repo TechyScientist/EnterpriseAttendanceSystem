@@ -27,8 +27,8 @@
     @SuppressWarnings("unchecked")
     List<User> users = ((List<User>) request.getAttribute("user-list"));
     if(users == null || users.isEmpty()) {
-        if(users != null && users.isEmpty()) { %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="error"/><strong>Search Error</strong>: No Users found matching the entered criteria. Please try again.</p>
+        if(users != null) { %>
+            <p id="error"><img src="/attendance/assets/img/error.png" alt="error"/><strong>Search Error</strong>: No users found matching the entered criteria. Please try again.</p>
 <%      }%>
 <h2>User Search</h2>
 <form action="UserSearchServlet" method="post">
