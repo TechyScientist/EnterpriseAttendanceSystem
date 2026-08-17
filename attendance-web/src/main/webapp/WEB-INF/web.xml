@@ -24,6 +24,10 @@
         <servlet-class>com.johnnyconsole.attendance.servlet.AddCourseServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>RemoveCourseServlet</servlet-name>
+        <servlet-class>com.johnnyconsole.attendance.servlet.RemoveCourseServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CourseSearchServlet</servlet-name>
         <servlet-class>com.johnnyconsole.attendance.servlet.CourseSearchServlet</servlet-class>
     </servlet>
