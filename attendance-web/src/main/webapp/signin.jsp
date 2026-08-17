@@ -73,6 +73,10 @@ else if(status == SC_ACCEPTED) { %>
             event.preventDefault();
             proxInput.value += key;
         }
+        else if(key === "Backspace") {
+            event.preventDefault();
+            proxInput.value = proxInput.value.substring(0, proxInput.value.length - 1);
+        }
         else if (key === 'Enter') {
             event.preventDefault();
             if(!submitted) {
