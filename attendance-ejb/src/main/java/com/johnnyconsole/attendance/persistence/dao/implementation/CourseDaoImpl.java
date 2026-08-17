@@ -94,6 +94,11 @@ public class CourseDaoImpl implements CourseDao {
 
     @Override
     public boolean delete(Course course) {
-        return false;
+        try {
+            manager.remove(manager.contains(course) ? course : manager.merge(course));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
