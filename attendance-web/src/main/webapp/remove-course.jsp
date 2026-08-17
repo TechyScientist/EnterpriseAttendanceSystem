@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.johnnyconsole.attendance.persistence.Course" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <% String pageCategory = "management"; %>
 <%@ include file="assets/include/header.jsp" %>
 
@@ -33,7 +34,7 @@ if(courses == null || courses.isEmpty()) {
     <div style="display: grid; grid-template-columns: auto auto; column-gap: 20px; max-width: fit-content;">
         <div>
             <h3>Search by Section Information</h3>
-            <form action="" method="post">
+            <form action="CourseSearchServlet" method="post">
                 <input type="hidden" id="referrer" name="referrer" value="remove-course.jsp" />
                 <div class="form-field">
                     <label for="term">Term Code</label>
@@ -56,7 +57,7 @@ if(courses == null || courses.isEmpty()) {
         </div>
         <div>
             <h3>Search By Course Title</h3>
-            <form action="" method="post">
+            <form action="CourseSearchServlet" method="post">
                 <input type="hidden" id="referrer" name="referrer" value="remove-course.jsp" />
                 <div class="form-field">
                     <label for="name">Name</label>
@@ -67,7 +68,8 @@ if(courses == null || courses.isEmpty()) {
         </div>
     </div>
 <% }
-else { %>
+else {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMM yyyy");%>
     <h2>Search Results</h2>
     <table>
         <tr>
@@ -83,8 +85,9 @@ else { %>
                 <td><%= c.term %> <%= c.subject %>-<%= c.number %>-<%= c.section %></td>
                 <td><%= c.name %></td>
                 <td><%= instructor.lastName %>, <%= instructor.firstName %></strong></td>
+                <td>Start: <strong><%= c.start.toLocalDateTime().format(formatter) %></strong><br/>End: <strong><%= c.end.toLocalDateTime().format(formatter) %></strong></td>
                 <td>
-                    <form action="RemoveUserServlet" method="post" style="margin: 0;">
+                    <form action="" method="post" style="margin: 0;">
                         <input type="hidden" id="term" name="term" value="<%= c.term %>"/>
                         <input type="hidden" id="subject" name="subject" value="<%= c.subject %>"/>
                         <input type="hidden" id="number" name="number" value="<%= c.number %>"/>
