@@ -57,7 +57,7 @@ public class SignInServlet extends HttpServlet {
                 return;
 
             }
-            else if(!user.isAdministrator) {
+            else if(!user.isAdministrator && !user.isInstructor) {
                 response.setStatus(SC_FORBIDDEN);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
                 return;
@@ -91,7 +91,7 @@ public class SignInServlet extends HttpServlet {
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
                 return;
             }
-            else if(!user.isAdministrator) {
+            else if(!user.isAdministrator && !user.isInstructor) {
                 response.setStatus(SC_FORBIDDEN);
                 request.getRequestDispatcher("/signin.jsp").forward(request, response);
                 return;
