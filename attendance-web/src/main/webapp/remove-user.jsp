@@ -24,6 +24,7 @@
         <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Remove User request completed.</p>
 <% }
 
+    @SuppressWarnings("unchecked")
     List<User> users = ((List<User>) request.getAttribute("user-list"));
     if(users == null || users.isEmpty()) {
         if(users != null && users.isEmpty()) { %>
