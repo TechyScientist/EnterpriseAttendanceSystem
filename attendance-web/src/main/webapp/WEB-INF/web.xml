@@ -31,4 +31,8 @@
         <servlet-name>CourseSearchServlet</servlet-name>
         <servlet-class>com.johnnyconsole.attendance.servlet.CourseSearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetCourseRosterServlet</servlet-name>
+        <servlet-class>com.johnnyconsole.attendance.servlet.GetCourseRosterServlet</servlet-class>
+    </servlet>
 </web-app>
