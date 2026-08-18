@@ -37,7 +37,15 @@
                                 <td><%= course.term %> <%= course.subject %>-<%= course.number %>-<%= course.section %></td>
                                 <td><%= course.name %></td>
                                 <td>Start: <strong><%= course.start.toLocalDateTime().format(formatter) %></strong><br/>End: <strong><%= course.end.toLocalDateTime().format(formatter) %></strong></td>
-                                <td><form action="" method="post" style="margin: 0;"><button type="submit">Roster <img src="assets/img/proceed.png" alt="Proceed"/></button></form></td>
+                                <td>
+                                    <form action="GetCourseRosterServlet" method="post" style="margin: 0;">
+                                        <input type="hidden" name="term" id="term" value="<%= course.term %>"/>
+                                        <input type="hidden" name="subject" id="subject" value="<%= course.subject %>"/>
+                                        <input type="hidden" name="number" id="number" value="<%= course.number %>"/>
+                                        <input type="hidden" name="section" id="section" value="<%= course.section %>"/>
+                                        <button type="submit" name="roster-submit" id="roster-submit">Roster <img src="assets/img/proceed.png" alt="Proceed"/></button>
+                                    </form>
+                                </td>
                             </tr>
 <%                  } %>
                 </table><br/>
@@ -57,7 +65,15 @@
                             <td><%= course.term %> <%= course.subject %>-<%= course.number %>-<%= course.section %></td>
                             <td><%= course.name %></td>
                             <td>Start: <strong><%= course.start.toLocalDateTime().format(formatter) %></strong><br/>End: <strong><%= course.end.toLocalDateTime().format(formatter) %></strong></td>
-                            <td><form action="" method="post" style="margin: 0;"><button type="submit">Roster <img src="assets/img/proceed.png" alt="Proceed"/></button></form></td>
+                            <td>
+                                <form action="GetCourseRosterServlet" method="post" style="margin: 0;">
+                                    <input type="hidden" name="term" id="term" value="<%= course.term %>"/>
+                                    <input type="hidden" name="subject" id="subject" value="<%= course.subject %>"/>
+                                    <input type="hidden" name="number" id="number" value="<%= course.number %>"/>
+                                    <input type="hidden" name="section" id="section" value="<%= course.section %>"/>
+                                    <button type="submit" name="roster-submit" id="roster-submit">Roster <img src="assets/img/proceed.png" alt="Proceed"/></button>
+                                </form>
+                            </td>
                         </tr>
 <%                  } %>
                 </table><br/>
@@ -70,12 +86,22 @@
                         <th>Course Identifier</th>
                         <th>Course Name</th>
                         <th>Course Start/End Dates</th>
+                        <th>Roster</th>
                     </tr>
                     <% for(Course course : past) { %>
                             <tr>
                                 <td><%= course.term %> <%= course.subject %>-<%= course.number %>-<%= course.section %></td>
                                 <td><%= course.name %></td>
                                 <td>Start: <strong><%= course.start.toLocalDateTime().format(formatter) %></strong><br/>End: <strong><%= course.end.toLocalDateTime().format(formatter) %></strong></td>
+                                <td>
+                                    <form action="GetCourseRosterServlet" method="post" style="margin: 0;">
+                                        <input type="hidden" name="term" id="term" value="<%= course.term %>"/>
+                                        <input type="hidden" name="subject" id="subject" value="<%= course.subject %>"/>
+                                        <input type="hidden" name="number" id="number" value="<%= course.number %>"/>
+                                        <input type="hidden" name="section" id="section" value="<%= course.section %>"/>
+                                        <button type="submit" name="roster-submit" id="roster-submit">Roster <img src="assets/img/proceed.png" alt="Proceed"/></button>
+                                    </form>
+                                </td>
                             </tr>
 <%                  } %>
                 </table><br/>
