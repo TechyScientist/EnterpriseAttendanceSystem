@@ -6,18 +6,18 @@
 if(status != SC_OK && status != SC_CREATED) {
     switch(status) {
         case SC_BAD_REQUEST: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
 <%          break;
         case SC_CONFLICT: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Validation Error</strong>: A course with the provided data already exists. Please check the data and try again.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Validation Error</strong>: A course with the provided data already exists. Please check the data and try again.</p>
 <%          break;
         case SC_INTERNAL_SERVER_ERROR: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
 <%          break;
     }
 }
 else if(status == SC_CREATED) { %>
-    <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Add Course request completed.</p>
+    <p id="success"><img src="assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Add Course request completed.</p>
 <% }
     List<User> instructors = userDao.findInstructors();
 %>

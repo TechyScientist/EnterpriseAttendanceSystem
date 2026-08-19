@@ -9,8 +9,8 @@
 <html lang="en">
   <head>
     <title>Attendance Management</title>
-    <link rel="stylesheet" href="/attendance/assets/style/main.css" />
-    <link rel="stylesheet" href="/attendance/assets/style/mobile.css" />
+    <link rel="stylesheet" href="assets/style/main.css" />
+    <link rel="stylesheet" href="assets/style/mobile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />

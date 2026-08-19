@@ -8,18 +8,18 @@
 if(status != SC_OK && status != SC_ACCEPTED) {
     switch(status) {
         case SC_BAD_REQUEST: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
 <%          break;
         case SC_NOT_FOUND: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: No course sections could be found using the submitted data. Please try again.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: No course sections could be found using the submitted data. Please try again.</p>
 <%          break;
         case SC_INTERNAL_SERVER_ERROR: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
 <%          break;
     }
 }
 else if(status == SC_ACCEPTED) { %>
-        <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Remove Course request completed.</p>
+        <p id="success"><img src="assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Remove Course request completed.</p>
 <% }
 
     @SuppressWarnings("unchecked")
@@ -27,7 +27,7 @@ else if(status == SC_ACCEPTED) { %>
 
 if(courses == null || courses.isEmpty()) {
     if(courses != null) { %>
-        <p id="error"><img src="/attendance/assets/img/error.png" alt="error"/><strong>Search Error</strong>: No course sections found matching the entered criteria. Please try again.</p>
+        <p id="error"><img src="assets/img/error.png" alt="error"/><strong>Search Error</strong>: No course sections found matching the entered criteria. Please try again.</p>
 <%  } %>
 
     <h2>Course Search</h2>
@@ -92,14 +92,14 @@ else {
                         <input type="hidden" id="subject" name="subject" value="<%= c.subject %>"/>
                         <input type="hidden" id="number" name="number" value="<%= c.number %>"/>
                         <input type="hidden" id="section" name="section" value="<%= c.section %>"/>
-                        <button type="submit" id="remove-course-submit" name="remove-course-submit">Submit Remove Request <img src="/attendance/assets/img/proceed.png" alt="Proceed"/></button>
+                        <button type="submit" id="remove-course-submit" name="remove-course-submit">Submit Remove Request <img src="assets/img/proceed.png" alt="Proceed"/></button>
                     </form>
                 </td>
             </tr>
 <%      } %>
     </table>
     <form action="remove-course.jsp" method="get" style="margin: 10px 0 0 0;">
-        <button type="submit"><img src="/attendance/assets/img/back.png" alt="back" style="margin-left: 0; margin-right: 10px;"/> New Search</button>
+        <button type="submit"><img src="assets/img/back.png" alt="back" style="margin-left: 0; margin-right: 10px;"/> New Search</button>
     </form>
 <% } %>
 

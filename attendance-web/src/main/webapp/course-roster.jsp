@@ -49,6 +49,6 @@ else { %>
     </table>
 <% } %>
 <form action="index.jsp" method="get" style="margin: 10px 0 0 0;">
-    <button type="submit"><img src="/attendance/assets/img/back.png" alt="back" style="margin-left: 0; margin-right: 10px;"/> Return to Dashboard</button>
+    <button type="submit"><img src="assets/img/back.png" alt="back" style="margin-left: 0; margin-right: 10px;"/> Return to Dashboard</button>
 </form>
 <%@ include file="assets/include/footer.jsp" %>

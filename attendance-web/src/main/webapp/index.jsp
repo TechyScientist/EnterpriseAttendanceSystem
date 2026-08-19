@@ -15,21 +15,21 @@
 if(status != SC_OK && status != SC_ACCEPTED) {
     switch(status) {
         case SC_BAD_REQUEST: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Registration Error</strong>: Missing or invalid course or student data.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Registration Error</strong>: Missing or invalid course or student data.</p>
 <%          break;
         case SC_CONFLICT: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Registration Error</strong>: The student with the prox information provided is already registered in this section.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Registration Error</strong>: The student with the prox information provided is already registered in this section.</p>
 <%          break;
         case SC_NOT_FOUND: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Registration Error</strong>: The course section or student profile provided could not be found. Please check the data and try again.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Registration Error</strong>: The course section or student profile provided could not be found. Please check the data and try again.</p>
 <%          break;
         case SC_INTERNAL_SERVER_ERROR: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Server Error</strong>: The server could not fulfill your request. Please try again or contact the system administrator.</p>
 <%          break;
     }
 }
 else if(status == SC_ACCEPTED) { %>
-    <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Deregistration request completed.</p>
+    <p id="success"><img src="assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: Deregistration request completed.</p>
 <% } %>
 
 <h2>Attendance Management Console</h2>

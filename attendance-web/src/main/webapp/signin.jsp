@@ -9,24 +9,24 @@
 if(status != SC_OK && status != SC_ACCEPTED) {
     switch(status) {
         case SC_UNAUTHORIZED: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Unauthorized Action</strong>: You must be signed in to access this system.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Unauthorized Action</strong>: You must be signed in to access this system.</p>
 <%          break;
         case SC_BAD_REQUEST: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Missing or invalid authentication data.</p>
 <%          break;
         case SC_NOT_FOUND: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: No user profile could be found using the submitted authentication data. Please try again.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: No user profile could be found using the submitted authentication data. Please try again.</p>
 <%          break;
         case SC_FORBIDDEN: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Forbidden</strong>: You must be a registered instructor or a system administrator to access this system.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Forbidden</strong>: You must be a registered instructor or a system administrator to access this system.</p>
 <%          break;
         case SC_CONFLICT: %>
-            <p id="error"><img src="/attendance/assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Your profile could not be authenticated. Please verify your information and try again.</p>
+            <p id="error"><img src="assets/img/error.png" alt="Error" /><strong>Authentication Error</strong>: Your profile could not be authenticated. Please verify your information and try again.</p>
 <%          break;
     }
 }
 else if(status == SC_ACCEPTED) { %>
-    <p id="success"><img src="/attendance/assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: You have been signed out.</p>
+    <p id="success"><img src="assets/img/success.png" alt="Success" /><strong>Operation Successful</strong>: You have been signed out.</p>
 <% } %>
 
 <h2>Management Console Sign In</h2>
@@ -52,7 +52,7 @@ else if(status == SC_ACCEPTED) { %>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" />
         </div>
-        <button type="submit">Sign In<img src="/attendance/assets/img/proceed.png" alt="Proceed" /></button>
+        <button type="submit">Sign In<img src="assets/img/proceed.png" alt="Proceed" /></button>
     </div>
 </form>
 
