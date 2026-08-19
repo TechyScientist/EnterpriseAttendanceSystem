@@ -63,7 +63,12 @@ public class EnrolmentDaoImpl implements EnrolmentDao {
 
     @Override
     public boolean create(Enrolment enrolment) {
-        return false;
+        try {
+            manager.persist(enrolment);
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     @Override
