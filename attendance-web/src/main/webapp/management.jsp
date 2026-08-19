@@ -37,7 +37,7 @@
     </div>
     <div>
         <h3>Registration Center</h3>
-        <a href="" class="image-button"><span>Enrol User in Course</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
+        <a href="register.jsp" class="image-button"><span>Register User in Course</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
         <a href="" class="image-button"><span>Withdraw User from Course</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
     </div>
 </div>
