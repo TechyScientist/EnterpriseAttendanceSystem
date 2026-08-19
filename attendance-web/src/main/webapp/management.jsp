@@ -38,7 +38,7 @@
     <div>
         <h3>Registration Center</h3>
         <a href="register.jsp" class="image-button"><span>Register User in Course</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
-        <a href="" class="image-button"><span>Withdraw User from Course</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
+        <a href="deregister.jsp" class="image-button"><span>Deregister User from Course</span><img src="assets/img/proceed.png" alt="Proceed"/></a>
     </div>
 </div>
 <%@ include file="assets/include/footer.jsp" %>
