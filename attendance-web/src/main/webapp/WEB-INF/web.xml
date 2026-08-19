@@ -39,4 +39,8 @@
         <servlet-name>RegisterStudentServlet</servlet-name>
         <servlet-class>com.johnnyconsole.attendance.servlet.RegisterStudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeregisterStudentServlet</servlet-name>
+        <servlet-class>com.johnnyconsole.attendance.servlet.DeregisterStudentServlet</servlet-class>
+    </servlet>
 </web-app>
