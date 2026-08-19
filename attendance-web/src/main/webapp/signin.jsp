@@ -1,4 +1,4 @@
-<% String pageCategory = "signin"; %>
+<% @SuppressWarnings("unused") String pageCategory = "signin"; %>
 <%@ include file="assets/include/header.jsp" %>
 
 <script>

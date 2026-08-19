@@ -4,7 +4,7 @@
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.time.Instant" %>
 <%@ page import="java.util.stream.Collectors" %>
-<% String pageCategory = "dashboard"; %>
+<% @SuppressWarnings("unused") String pageCategory = "dashboard"; %>
 <%@ include file="assets/include/header.jsp" %>
 
 <script>

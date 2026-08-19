@@ -1,7 +1,7 @@
 <%@ page import="com.johnnyconsole.attendance.persistence.Course" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.johnnyconsole.attendance.persistence.Enrolment" %>
-<% String pageCategory = "dashboard"; %>
+<% @SuppressWarnings("unused") String pageCategory = "dashboard"; %>
 <%@ include file="assets/include/header.jsp" %>
 
 <script>
@@ -10,6 +10,7 @@
 
 <%
     Course course = (Course) request.getAttribute("course");
+    @SuppressWarnings("unchecked")
     List<Enrolment> roster = (List<Enrolment>) request.getAttribute("roster");
 %>
 

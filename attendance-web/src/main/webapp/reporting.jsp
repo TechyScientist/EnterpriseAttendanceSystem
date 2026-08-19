@@ -1,4 +1,4 @@
-<% String pageCategory = "reporting"; %>
+<% @SuppressWarnings("unused") String pageCategory = "reporting"; %>
 <%@ include file="assets/include/header.jsp" %>
 
 <h2>Generate Reports</h2>

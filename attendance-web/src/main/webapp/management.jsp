@@ -1,4 +1,4 @@
-<% String pageCategory = "management"; %>
+<% @SuppressWarnings("unused") String pageCategory = "management"; %>
 <%@ include file="assets/include/header.jsp" %>
 <style>
     div#horizontal-3 {
