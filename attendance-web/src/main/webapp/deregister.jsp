@@ -27,7 +27,7 @@ else if(status == SC_ACCEPTED) { %>
 <% } %>
 
 <h2>Registration Center: Deregister Student</h2>
-<form action="" method="post" style="display: grid; grid-template-rows: auto auto; grid-template-columns: auto auto; grid-template-areas: 'course student' 'submit submit'; gap: 10px;">
+<form action="DeregisterStudentServlet" method="post" style="display: grid; grid-template-rows: auto auto; grid-template-columns: auto auto; grid-template-areas: 'course student' 'submit submit'; gap: 10px;">
     <input type="hidden" id="referrer" name="referrer" value="deregister.jsp">
     <div style="grid-area: course;">
         <h3>Course Section Information</h3>

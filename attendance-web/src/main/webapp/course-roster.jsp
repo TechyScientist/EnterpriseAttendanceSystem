@@ -33,14 +33,14 @@ else { %>
                 <td>FC: <strong><%= student.proxFC %></strong>, CC: <strong><%= student.proxCC %></strong></td>
                 <% if(user.isAdministrator)  { %>
                 <td>
-                    <form action="" method="post" style="margin: 0;">
+                    <form action="DeregisterStudentServlet" method="post" style="margin: 0;">
+                        <input type="hidden" name="referrer" id="referrer" value="index.jsp"/>
                         <input type="hidden" name="term" id="term" value="<%= enrolment.term %>"/>
                         <input type="hidden" name="subject" id="subject" value="<%= enrolment.subject %>"/>
                         <input type="hidden" name="number" id="number" value="<%= enrolment.number %>"/>
                         <input type="hidden" name="section" id="section" value="<%= enrolment.section %>"/>
-                        <input type="hidden" name="proxFC" id="proxFC" value="<%= enrolment.proxFC%>"/>
-                        <input type="hidden" name="proxCC" id="proxCC" value="<%= enrolment.proxCC%>"/>
-                        <button type="submit">Deregister <img src="assets/img/proceed.png" alt="Proceed"/></button>
+                        <input type="hidden" name="prox" id="prox" value="<%= enrolment.proxFC %>:<%= enrolment.proxCC %>"/>
+                        <button type="submit" name="deregister-submit" id="deregister-submit">Deregister <img src="assets/img/proceed.png" alt="Proceed"/></button>
                     </form>
                 </td>
                 <% } %>
