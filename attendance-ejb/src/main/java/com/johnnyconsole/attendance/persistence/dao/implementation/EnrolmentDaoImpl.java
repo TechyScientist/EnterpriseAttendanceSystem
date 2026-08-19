@@ -73,7 +73,12 @@ public class EnrolmentDaoImpl implements EnrolmentDao {
 
     @Override
     public boolean delete(Enrolment enrolment) {
-        return false;
+        try {
+            manager.remove(manager.contains(enrolment) ? enrolment : manager.merge(enrolment));
+            return true;
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
 }
